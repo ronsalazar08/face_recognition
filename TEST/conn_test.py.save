@@ -1,0 +1,30 @@
+#!/usr/bin/python3
+
+import pymysql
+
+# Open database connection
+db = pymysql.connect("10.44.2.161","remote","1111","TorresTech" )
+
+# prepare a cursor object using cursor() method
+cursor = db.cursor()
+
+# Prepare SQL query to INSERT a record into the database.
+sql = f"SELECT firstname, lastname, middlename, company FROM contractor_employee WHERE face_id = 1"
+#try:
+# Execute the SQL command
+cursor.execute(sql)
+# Fetch all the rows in a list of lists.
+results = cursor.fetchall()
+for row in results:
+    fname = row[0]
+    lname = row[1]
+    mname = row[2]      company = row[3]
+      # Now print fetched result
+      #print ("fname = %s,lname = %s,age = %d,sex = %s,income = %d" % \
+      #   (fname, lname, age, sex, income ))
+      print (f"{fname} {mname} {lastname}: {company}")
+#except:
+#   print ("Error: unable to fetch data")
+
+# disconnect from server
+db.close()
